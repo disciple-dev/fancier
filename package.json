@@ -1,0 +1,24 @@
+{
+  "name": "fancier",
+  "version": "1.0.0",
+  "description": "Image management library for enthusiasts.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/disciple-dev/fancier.git"
+  },
+  "author": "Aaron McClinchey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/disciple-dev/fancier/issues"
+  },
+  "homepage": "https://github.com/disciple-dev/fancier#readme",
+  "devDependencies": {
+    "csv": "^6.2.5"
+  }
+}
