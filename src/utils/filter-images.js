@@ -31,6 +31,10 @@ export default function (imageData, searchParameters) {
 
         images = images.filter(image => {
 
+            if (type === 'boolean') {
+                return image[imagePropertyKey] === searchParameterValues;
+            }
+
             if (imagePropertyKey === 'coordinates') {
                 return pointInPolygon(searchParameterValues, image[imagePropertyKey])
             }

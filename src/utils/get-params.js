@@ -30,7 +30,6 @@ export const getSearchParams = function () {
     
     Options
         -h, --help          Display this message.
-        --coordinates       Takes an array of coordinate pairs, [[x,y],[x.y]...]
 
     Available arguments:
     `)
@@ -53,6 +52,9 @@ export const getSearchParams = function () {
 
         if (key === 'coordinates') {
             values = JSON.parse(parameterValues);
+        }
+        else if (key === 'favorite') {
+            values = parameterValues === "true"
         } else {
             values = parameterValues.split(',')
         }

@@ -2,7 +2,8 @@ const number = 'number',
     string = 'string',
     array = 'array',
     none = false,
-    polygon = '[[number, number]...]'
+    polygon = '[[number,number]...]',
+    boolean = 'boolean'
 
 export const comparisonOperators = Object.freeze({
     equal: '$eq',
@@ -34,7 +35,7 @@ const allowedArgs = {
         }
     },
     favorite: {
-        type: string
+        type: boolean
     },
     filename: {
         type: string
