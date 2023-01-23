@@ -1,20 +1,18 @@
 import { pointInPolygon } from "./in-polygon.js";
 import getPropertyByPath from "./get-property-by-path.js";
-import allowedArgs from "./cli-args.js";
+import allowedArgs, { comparisonOperators } from "./cli-args.js";
 
-const compare = (a, b, comparator = '$eq') => {
-    console.log(`comparing ${a} ${comparator} ${b}`)
+const compare = (a, b, comparator = comparisonOperators.equal) => {
     switch (comparator) {
-        case '$lt':
+        case comparisonOperators.lessThan:
             return a < b;
-        case '$lte':
+        case comparisonOperators.lessThanOrEqual:
             return a <= b;
-        case '$gt':
+        case comparisonOperators.greaterThan:
             return a > b;
-        case '$gte':
-            console.log(`${a} >= ${b}: ${a >= b}`)
+        case comparisonOperators.greaterThanOrEqual:
             return a >= b;
-        case '$eq':
+        case comparisonOperators.equal:
             return a === b;
         default:
             return a === b;

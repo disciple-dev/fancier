@@ -4,6 +4,14 @@ const number = 'number',
     none = false,
     polygon = '[[number, number]...]'
 
+export const comparisonOperators = Object.freeze({
+    equal: '$eq',
+    greaterThan: '$gt',
+    greaterThanOrEqual: '$gte',
+    lessThan: '$lt',
+    lessThanOrEqual: '$lte'
+})
+
 const allowedArgs = {
     alpha: {
         type: string
@@ -17,11 +25,11 @@ const allowedArgs = {
     dpi: {
         type: number,
         min: {
-            operator: '$gte',
+            operator: comparisonOperators.greaterThanOrEqual,
             type: number
         },
         max: {
-            operator: '$lte',
+            operator: comparisonOperators.lessThanOrEqual,
             type: number
         }
     },
@@ -37,9 +45,11 @@ const allowedArgs = {
     height: {
         type: number,
         min: {
+            operator: comparisonOperators.greaterThanOrEqual,
             type: number
         },
         max: {
+            operator: comparisonOperators.lessThanOrEqual,
             type: number
         }
     },
@@ -49,21 +59,25 @@ const allowedArgs = {
     size: {
         type: number,
         min: {
+            operator: comparisonOperators.greaterThanOrEqual,
             type: number
         },
         max: {
+            operator: comparisonOperators.lessThanOrEqual,
             type: number
         }
     },
     userTags: {
-        type: `${array}<${string}>`
+        type: string
     },
     width: {
         type: number,
         min: {
+            operator: comparisonOperators.greaterThanOrEqual,
             type: number
         },
         max: {
+            operator: comparisonOperators.lessThanOrEqual,
             type: number
         }
     },
