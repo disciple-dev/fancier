@@ -53,12 +53,11 @@ export const getSearchParams = function () {
 
         if (key === 'coordinates') {
             values = JSON.parse(parameterValues);
-            console.log(typeof values, values)
         } else {
             values = parameterValues.split(',')
         }
         return {
-            ...params, [key.replace('--', '')]: values,
+            ...params, [key]: values,
         }
     }, {})
 

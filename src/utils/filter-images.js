@@ -27,7 +27,6 @@ export default function (imageData, searchParameters) {
 
     searchKeys.forEach(imagePropertyKey => {
         const { operator, type } = getPropertyByPath(allowedArgs, imagePropertyKey);
-        console.log({ operator, type, imagePropertyKey })
         const searchParameterValues = searchParameters[imagePropertyKey];
 
         images = images.filter(image => {
