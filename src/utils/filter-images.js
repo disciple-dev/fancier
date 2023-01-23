@@ -31,27 +31,29 @@ export default function (imageData, searchParameters) {
 
         images = images.filter(image => {
 
-            let include = true;
-
             if (imagePropertyKey === 'coordinates') {
-                include = pointInPolygon(searchParameterValues, image[imagePropertyKey])
+                return pointInPolygon(searchParameterValues, image[imagePropertyKey])
             }
 
-            if (include && Array.isArray(image[imagePropertyKey])) {
-                include = image[imagePropertyKey].every(value => searchParameters[imagePropertyKey].includes(value));
+            if (Array.isArray(image[imagePropertyKey])) {
+                return image[imagePropertyKey].every(value => searchParameters[imagePropertyKey].includes(value));
             }
 
-            if (include && type === 'string') {
-                include = image[imagePropertyKey].includes(searchParameterValues)
+            if (type === 'string') {
+                return searchParameterValues.every(value => {
+                    const search = new RegExp(value, 'i')
+                    return image[imagePropertyKey].match(search) !== null
+                })
             }
-            if (include && type === 'number') {
+
+            if (type === 'number') {
                 if (Array.isArray(searchParameterValues)) {
-                    let path = imagePropertyKey.split('.').shift();
-                    include = searchParameterValues.every(item => compare(image[path], Number(item), operator))
+                    const path = imagePropertyKey.split('.').shift();
+                    return searchParameterValues.every(item => compare(image[path], Number(item), operator))
                 }
             }
 
-            return include;
+            return true
         })
     })
 

@@ -23,7 +23,9 @@ export default function (records) {
                 .filter(coord => coord != '')
                 // coords come in as strings, since we split them as a string. Convert them to numbers.
                 .map(coord => {
-                    const value = coord.replace('°', '.').replace(charactersNotAllowedInNumberCast, '');
+                    const value = coord
+                        .replace('°', '.')
+                        .replace(charactersNotAllowedInNumberCast, '');
                     return Number(value)
                 }),
             favorite: record.favorite.toLowerCase() === 'yes',
@@ -31,11 +33,9 @@ export default function (records) {
             alpha: record.alpha,
             hockeyTeam: record.hockeyTeam,
             userTags: record.userTags
-                .split(commaSeparatedValueRegex)
-                .map(item => item.replace(/\"/, '')) // for some reason there is an extra set of parenthesis in the CSV file where 
-                .filter(tag => tag.length)
         }
 
+        // if bitColor is a number, it'll be cast to a number by csv-parse, otherwise it'll be an empty string
         if (typeof record.bitColor !== 'string') {
             fileMeta.bitColor = record.bitColor;
         }
