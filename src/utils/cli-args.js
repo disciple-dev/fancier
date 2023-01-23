@@ -1,9 +1,9 @@
-const number = 'number',
-    string = 'string',
-    array = 'array',
-    none = false,
-    polygon = '[[number,number]...]',
-    boolean = 'boolean'
+export const CLIArgumentTypes = Object.freeze({
+    number: 'number',
+    string: 'string',
+    polygon: '[[number,number]...]',
+    boolean: 'boolean'
+})
 
 export const comparisonOperators = Object.freeze({
     equal: '$eq',
@@ -15,71 +15,71 @@ export const comparisonOperators = Object.freeze({
 
 const allowedArgs = {
     alpha: {
-        type: string
+        type: CLIArgumentTypes.string
     },
     continent: {
-        type: string
+        type: CLIArgumentTypes.string
     },
     coordinates: {
-        type: polygon
+        type: CLIArgumentTypes.polygon
     },
     dpi: {
-        type: number,
+        type: CLIArgumentTypes.number,
         min: {
             operator: comparisonOperators.greaterThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         },
         max: {
             operator: comparisonOperators.lessThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         }
     },
     favorite: {
-        type: boolean
+        type: CLIArgumentTypes.boolean
     },
     filename: {
-        type: string
+        type: CLIArgumentTypes.string
     },
     filetype: {
-        type: string
+        type: CLIArgumentTypes.string
     },
     height: {
-        type: number,
+        type: CLIArgumentTypes.number,
         min: {
             operator: comparisonOperators.greaterThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         },
         max: {
             operator: comparisonOperators.lessThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         }
     },
     hockeyTeam: {
-        type: string
+        type: CLIArgumentTypes.string
     },
     size: {
-        type: number,
+        type: CLIArgumentTypes.number,
         min: {
             operator: comparisonOperators.greaterThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         },
         max: {
             operator: comparisonOperators.lessThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         }
     },
     userTags: {
-        type: string
+        type: CLIArgumentTypes.string
     },
     width: {
-        type: number,
+        type: CLIArgumentTypes.number,
         min: {
             operator: comparisonOperators.greaterThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         },
         max: {
             operator: comparisonOperators.lessThanOrEqual,
-            type: number
+            type: CLIArgumentTypes.number
         }
     },
 }

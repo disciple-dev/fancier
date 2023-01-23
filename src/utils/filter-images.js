@@ -1,6 +1,6 @@
 import { pointInPolygon } from "./in-polygon.js";
 import getPropertyByPath from "./get-property-by-path.js";
-import allowedArgs, { comparisonOperators } from "./cli-args.js";
+import allowedArgs, { CLIArgumentTypes, comparisonOperators } from "./cli-args.js";
 
 const compare = (a, b, comparator = comparisonOperators.equal) => {
     switch (comparator) {
@@ -31,11 +31,11 @@ export default function (imageData, searchParameters) {
 
         images = images.filter(image => {
 
-            if (type === 'boolean') {
+            if (type === CLIArgumentTypes.boolean) {
                 return image[imagePropertyKey] === searchParameterValues;
             }
 
-            if (imagePropertyKey === 'coordinates') {
+            if (type === CLIArgumentTypes.polygon) {
                 return pointInPolygon(searchParameterValues, image[imagePropertyKey])
             }
 
@@ -43,14 +43,14 @@ export default function (imageData, searchParameters) {
                 return image[imagePropertyKey].every(value => searchParameters[imagePropertyKey].includes(value));
             }
 
-            if (type === 'string') {
+            if (type === CLIArgumentTypes.string) {
                 return searchParameterValues.every(value => {
                     const search = new RegExp(value, 'i')
                     return image[imagePropertyKey].match(search) !== null
                 })
             }
 
-            if (type === 'number') {
+            if (type === CLIArgumentTypes.number) {
                 if (Array.isArray(searchParameterValues)) {
                     const path = imagePropertyKey.split('.').shift();
                     return searchParameterValues.every(item => compare(image[path], Number(item), operator))
